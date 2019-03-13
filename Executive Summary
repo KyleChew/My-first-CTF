@@ -17,3 +17,15 @@ my own credenetials as well as flag number three. By modifying the database to p
 credential, I was able to access the webpage with the highest privilege and obtain flag four. The
 last flag was attainned by using a shell injection attack which manipulates the system to read the
 commands using a badly coded network ping service.
+
+Methodology Used
+The approach that I used to investigate and compromise the system is separate into various
+phases. The first phase is to scout the system and running it through reconnaissance and auxiliary
+software to look for the service available in the system, follow by vulnerability assesment phase
+which means determine what version is the service in the system and look for vulnerability such as
+outdated, poorly secured and badly coded services. The next phase is exploit and testing phase
+which is to launch exploitation code towards vulnerable services using exploitation tools such as
+metasploitable framework. The following phase is analysing information which is to collect and
+evaluate all the relevant information obtained from the compromised service such as login
+credentials and backend script. The last phase would be reporting and documentation, writing down
+all the trial and error results on the running sheet.
