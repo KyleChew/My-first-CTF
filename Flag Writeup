@@ -1,0 +1,57 @@
+
+Flag 1 – distCCD
+ii7haeb8muohe9chi5ley4ceime5uzaeca2beeghe0Soqu1thai2Iedae5Wo3ga1le0ianihohsaiD4rainaong
+aingiK5IeNg3uusai8iew1shohd2xie0quaj2xeez
+I was able to access a shell terminal using the exploit provided by metasploitable towards a
+tcp service called distccd. i then navigate using the command “pwd” to find out where I was,
+navigate to the home directory with “ls” and found flag1 as well as a notes text file. i open the flag
+and notes file with “cat” command, in the notes file was username: bak and password:
+Ohpheequee6Eich2fohkohPee0phiSai8xo
+
+Flag2 – FTP
+eiSuNgoV3gesash2AiZ9AuSahzeeshohcupibaePhori9aixoh7ooPho5udodo3ahTholaeheeShaibaB2Chai
+teeWihoh0eivoo7eig5Eiciav2keejoyuleedoe0ai
+During the exploration of the shell, I accessed “var/log/proftpd/xferlog” and determine that
+the credential given from the note is from the proftpd 1.3.1 FTP logins. When I successfully log in to
+FTP it shows an etc.old directory and flag2 text file. I was able to download the flag to a local
+machine and open it there. On the etc.old directory I managed to find a shadow file containing
+password of users in the system encrypted and salted.
+
+Flag 3 – Password Cracking
+aiwei7eex6aKohvidah8euPiowah8iesh8eilaido0foo9ahghaen9Oom2zu4eedod1quaenahreid9ep3Uiz1
+iv7YooLohhoh5ouPee4geiXeiru3iesh9ushas0Ief
+Method 1
+After I found the credential on flag1 I used the command “cd .. “ a few times to navigate to
+root directory and check every single folder in the system. On the directory “/var/mysql/”, I was able
+to find flag3.
+
+Flag 4 – mySQL database
+iucohKae4lairo2YaeJaighuu4ahnoh3ahmohquooz1oil3moo0oJoa2ooz7mieZ4ahQueinie4Aix5of0aeRe
+7Ailooph5aec7poowai6eep9pu4AiQuoo7aeChooNe
+What else is in the FTP storage was a folder named “gnb”, that’s what the webpage is called
+in the HTTP service and inside the gnb folder contain “user.MYD”, “user.MYI”, “users.frm”. After a bit
+of googling it seems that the files inside gnb is a database. I then downloaded the database,
+reconstruct it using “mysql –u root –p”. On the database it shows two account, with the first
+username: NULL, password: NULL and username: admin, password:
+8e5c54ad68df29cc6086bd30f7c8f342 . I was not able to crack the md5 password for admin so I
+decided to add another credential so that it logs in with the username and password that I created. I
+tried doing this in the FTP service by deleting and reuploading the modified databse .However it goes
+back to the original login page after succesfully login and using the network ping feature , switching
+to SSH works fine after logins .The SQL command that I used is “show databases;” to show all the
+database , “use gnb” to use the selected database ,”show table” to show all the tables in the
+database,”SELECT * FROM users;” to show all the values in the database and “INSERT INTO users
+(username,password) VALUES ('admin2','81dc9bdb52d04dc20036dbd8313ed055');” to insert my
+own credential with ‘”81dc9bdb52d04dc20036dbd8313ed055” as an md5 of “1234” string.After that I access the page using the credential that I created and it shows flag 4 and an IP
+ping service.
+
+Flag 5 –Shell injection Attack
+chahNaelia9zohlaseiPaich0QuoWoh8ohfaenaiQuaetaebushoakarai6lainohjongoneesoocahdei6guosi
+ethae7uwuu5Kaid9eisah8Echoo4kaiGh2eit2mu
+With the IP ping service, I was able to conduct a shell injection attack by manipulating it with
+a semi colon “;’ after the IP address in order put in the commands I wish. What it means is to
+execute the two commands which is to run the pinging test as well as the command afterwards. The
+command I used is “127.0.0.1 ; whoami;” to find out the user I was connected , the system replied
+with “root” which means that I probably have full privillege on the system. After that I ran the command “127.0.0.1 ; pwd;” to determine where I was which it replied
+“/usr/local/apache2/htdocs/admin”.I then relocate to home directory and check to see what files is on the system with
+“127.0.0.1; ls /root”, the system shows the flag 5 and with the command “127.0.0.1; cat /root/flag5”
+I was able to retrieve the flag.
