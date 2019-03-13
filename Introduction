@@ -29,3 +29,35 @@ metasploitable framework. The following phase is analysing information which is 
 evaluate all the relevant information obtained from the compromised service such as login
 credentials and backend script. The last phase would be reporting and documentation, writing down
 all the trial and error results on the running sheet.
+
+PHASES
+Reconnaissance Phase
+The method that I used to scout the system is to use network reconnaissance tools such as
+masscan, nmap, nikto, metasploitable auxiliary and zenmap to scan all the ports in the system,
+determine what service is there and if the port is open or closed. Another step for scouting is to
+actually attempt access to the service on the open port to verify that the service is working without
+any faults.
+
+Vulnerability assesment
+To determine if a service is vulnerable, I have used a CVE.mitre.org webpage which is used to
+find out common vulnerabilities and exposures of the version and using the CVE tagged it generated
+i was able to find more information about the weaknesses in the exploit database webpage for
+example ProFTPD 1.3.1 has a vulnerability which the website tagged as CVE-2009-0542, then I head
+to the exploit database webpage and paste in the CVE tag which i was able to find out that it is
+vulnerable to sql injection and even provided a perl code exploit .
+
+Exploit Phase
+With the information gathered from the previous steps, there are a few methods that
+system exploitation can be conducted, the first method is to use the vulnerability code found on the
+explotation database website and transfer it to metasploitable framework and execute it using the
+feature provide. The second method is to search for exploit saved in the metasploitable archive such
+as proftpd mod sql exploit. Another approach for attempting to gain access of the system is to launch
+attacks such as web attacks, password cracking and brute-forcing with tools and techniques e.g. SQL
+injection, XSS cross site scripting, john the ripper, patator, rockyoutxt brute force, beEF framework
+etc.
+
+Information evaluation and documentation
+If any exploitation is successful, the data gathered will be analysed, determine if its helpful
+on accessing other services.for example, if a username is found via metasploitable it would shorten
+the brute force time for a login. All the trial and error steps and results will also be document in a
+running sheet and the report.
