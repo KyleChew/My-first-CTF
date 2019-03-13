@@ -1,0 +1,32 @@
+Testing log
+Enviroment Analysis
+The first step I did is making sure that both enviroment network settings are set to NAT, then
+I ran zenmap with the command “192.168.197. *” to find the ip address of the target virtual
+machine, next I ran the command “masscan 192.168.197.129/32 --rate=10000” to show all the open
+ports on the ip address and nmap “192.168.197.129 -p- -sV -A” with the –p- command meaning to
+scan all the ports , -sV meaning verbrose which is to state the status while scaning the ports and -A
+meaning to detect the operating system and its version.After that I tried accessing all the services to
+make sure that they are working correctly which then I discover there is an open http port ,I then
+used nikto command “nikto –h 192.168.197.129” to search for directories.
+
+Exploit Attempts
+Exploit Database
+With the information found, I found that proFTPD service is outdated and it is vulnerable to
+SQL injection which manipulates the “%” symbol, which leads me to use the command on the user 
+coloumn “USER %') and 1=2 union select 1,1, uid, gid, homedir, shell from users; --“and the password
+of “1”.
+Same goes for Dovecot IMAP which takes advantage of a special configuration to prints out
+all the emails that is set to the option. I attempt to transfer perl and ruby code that was on the
+exploit database website in to metasploit console in order to use its feature to execute the exploit.
+
+Web Attacks
+After the discovery of the webpage directory which leads to an admin login page I tried to
+perform an SQL injection attack as well as insecure direct object reference attack on the webpage.
+The attempted commands are “‘; DROP DATABASE MAIN_DATABASE; --“and
+“http://192.168.197.129/admin/index.php?include=/./../../../../etc/passwd”.
+
+Metasploit Framework
+Another way of finding exploits is to use a tool called metasploitable which has a bunch of
+exploit save in the software, using that I attempted to find exploits for proFTPD, Dovecot, Apache
+2.2.8 and distcc services with the command “msfconsole” to activate the framework, “search
+distccd” and “use exploit/unix/misc/distcc_exec” for each of the services.
