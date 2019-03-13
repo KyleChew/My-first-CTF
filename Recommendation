@@ -1,0 +1,16 @@
+Recommendation
+In my opinioin the first action to take is to update distCCD service or replace it with a more
+secure form of tcp service immediately, the current version is highly vulnerable to exploits and risk
+having all the data on the system getting stole .Additionally,important usernames and password
+should not be stored on the system especially on an unencrypted text file leaving it publicly on the
+desktop, this will lead to all other services, account, web logins getting access without consent.I
+believe passwords for a banking firm should not be a simple one letter word and can be found in
+the dictionary e.g. cupcakes which can be easily brute forced or cracked using tools like patator,
+dictionary attack , or john.Some better password would be cupcakes.1, cupcaks24 , CuPcaKES_52
+etc.This would significantly increase the cracking time and make it nearly impossible to be bruteforce .Another advice is to not leave database accessible in secure shell or terminate remote access
+to the database after using it on a SSH service, this would prevent it getting all the credential or
+sensitive information in the database getting accessed,modified or stolen .The network ping test on
+the webpage is badly coded and contain no security protocols , it is vulnerable to a simple shell
+injection attack and can be easily manipulated just by inserting a semi colon after the IP address , it
+should incorporate some form of web application security such as the admin login page that inserts
+a slash right after each asterisk.
