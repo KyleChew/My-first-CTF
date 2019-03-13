@@ -1,0 +1,19 @@
+Executive Summary
+The goal of this case study is to shows methods and techniques to infiltrate a system, attain
+privileges in the system and show how data can be extracted from these attacks. The provided
+system will contain 5 flags; each flag will represent valuable data scattered inside the system. I
+separate the investigation into phases to show the difference steps, with the phases consisting of
+finding services and its version, assesing the vulnerability of the system, exploit and attacking the
+system, evaluate the data found from the exploit and documentation.
+The first flag was achieve using a network reconnaissance software to seek out the service
+available inside the system and used exploit against outdated and vulnerable service, I was able to
+extract data such as username, password and most of the files inside the sytem. With the
+credential found on the system I was able to find the second flag via accessing a service call FTP
+which is used to store data when crossing destination as well as an encrypted password file. After
+cracking the password file with a software called john I was able to access another service called SSH
+which is used to securely access a computer system over the network, inside the service I found
+more credentials, backend SQL database code for a website that can be easily modified and insert
+my own credenetials as well as flag number three. By modifying the database to put in my own
+credential, I was able to access the webpage with the highest privilege and obtain flag four. The
+last flag was attainned by using a shell injection attack which manipulates the system to read the
+commands using a badly coded network ping service.
